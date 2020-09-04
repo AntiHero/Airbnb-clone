@@ -1,14 +1,14 @@
 import { registerPasswordValidation } from './../../../yupSchema';
 import { sendEmail } from "./../../../utils/sendEmail";
 import { createConfirmEmailLink } from "./../../../utils/createConfirmEmailLink";
-import { duplicatedEmail } from "./errorMessages";
+import { duplicatedEmail, emailTooShort, invalidEmal } from "./errorMessages";
 import { formatYupErrors } from "./../../../utils/formatYupErrors";
 import { User } from "./../../../entity/User";
 import { ResolverMap } from "./../../../@types/graphql-utils";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
-  email: yup.string().min(3).max(255).email(),
+  email: yup.string().min(3, emailTooShort).max(255).email(invalidEmal).required(),
   password: registerPasswordValidation,
 });
 

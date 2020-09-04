@@ -2,7 +2,7 @@
   "private": true,
   "workspaces": ["packages/*"],
   "scripts": {
-    "server": "yarn workspace server",
-    "website": "yarn workspace website"
+    "server": "yarn workspace @abb/server",
+    "website": "yarn workspace @abb/website"
   }
 }
