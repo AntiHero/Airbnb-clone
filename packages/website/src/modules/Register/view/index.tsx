@@ -33,12 +33,14 @@ const RegisterView = (
         onSubmitCapture={handleSubmit}
       >
         <Field
+          type='email'
           name='email'
           prefix={<UserOutlined className='site-form-item-icon' />}
           placeholder='Email'
           component={EmailField}
         />
         <Field
+          type='password'
           name='password'
           prefix={<LockOutlined className='site-form-item-icon' />}
           placeholder='Password'
@@ -48,7 +50,6 @@ const RegisterView = (
           <Form.Item name='remember' valuePropName='checked' noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-
           <a
             className='RegisterView__login-form-forgot login-form-forgot'
             href='/forgot'

@@ -1,0 +1,22 @@
+{
+  "name": "@abb/controller",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist && tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^14.11.5",
+    "@types/react": "^16.9.51",
+    "@types/react-dom": "^16.9.8",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.0.3"
+  }
+}

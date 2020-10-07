@@ -1,18 +1,18 @@
 import React from "react";
+import { RegisterController } from '@abb/controller';
 import EnhancedRegisterView from "./view";
 import "./RegisterConnector.scss";
 
 const RegisterConnector = () => {
-  const handleSubmit = async (props: any) => {
-    console.log(props);
-    return null;
-  };
-
   return (
     <div className="RegisterConnector">
-      <EnhancedRegisterView submit={handleSubmit} />
+      <RegisterController>
+        {
+          ({ submit }) => <EnhancedRegisterView submit={submit} />
+        }
+      </RegisterController>
     </div>
-  );
+  )
 };
 
 export default RegisterConnector;

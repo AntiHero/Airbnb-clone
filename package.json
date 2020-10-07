@@ -4,6 +4,7 @@
   "scripts": {
     "server": "yarn workspace @abb/server",
     "website": "yarn workspace @abb/website",
-    "common": "yarn workspace @abb/common"
+    "common": "yarn workspace @abb/common",
+    "controller": "yarn workspace @abb/controller"
   }
 }
