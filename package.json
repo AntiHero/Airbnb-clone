@@ -3,6 +3,7 @@
   "workspaces": ["packages/*"],
   "scripts": {
     "server": "yarn workspace @abb/server",
-    "website": "yarn workspace @abb/website"
+    "website": "yarn workspace @abb/website",
+    "common": "yarn workspace @abb/common"
   }
 }

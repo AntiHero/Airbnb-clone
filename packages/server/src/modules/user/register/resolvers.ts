@@ -1,16 +1,17 @@
-import { registerPasswordValidation } from './../../../yupSchema';
+// import { registerPasswordValidation } from './../../../yupSchema';
 import { sendEmail } from "./../../../utils/sendEmail";
 import { createConfirmEmailLink } from "./../../../utils/createConfirmEmailLink";
-import { duplicatedEmail, emailTooShort, invalidEmal } from "./errorMessages";
+import { duplicatedEmail } from "./errorMessages";
 import { formatYupErrors } from "./../../../utils/formatYupErrors";
 import { User } from "./../../../entity/User";
 import { ResolverMap } from "./../../../@types/graphql-utils";
-import * as yup from "yup";
+import { validRegisterSchema } from '@abb/common';
+// import * as yup from "yup";
 
-const schema = yup.object().shape({
-  email: yup.string().min(3, emailTooShort).max(255).email(invalidEmal).required(),
-  password: registerPasswordValidation,
-});
+// const schema = yup.object().shape({
+//   email: yup.string().min(3, emailTooShort).max(255).email(invalidEmal).required(),
+//   password: registerPasswordValidation,
+// });
 
 export const resolvers: ResolverMap = {
   // Query: {
@@ -23,7 +24,7 @@ export const resolvers: ResolverMap = {
       { redis, url }
     ) => {
       try {
-        await schema.validate(args, { abortEarly: false });
+        await validRegisterSchema.validate(args, { abortEarly: false });
       } catch (err) {
         return formatYupErrors(err);
       }
