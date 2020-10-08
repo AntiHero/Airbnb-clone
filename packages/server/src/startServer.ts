@@ -37,7 +37,7 @@ export const startServer = async () => {
 
   const cors = {
     credentials: true,
-    origin: `http://localhost:${port}`,
+    origin: process.env.FRONTEND_HOST,
   };
 
   let connection: Connection;

@@ -1,0 +1,12 @@
+schema: ./graphql.schema.json
+documents: ./src/**/*.tsx
+generates:
+  ./src/generated/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      declarationKind: 'interface'
+      skipTypename: true
+      preResolveTypes: true
+  

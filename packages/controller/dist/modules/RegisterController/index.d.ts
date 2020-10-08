@@ -1,7 +1,8 @@
+import { RegisterMutationVariables } from '../../generated/types';
 interface RegisterControllerProps {
     children: (data: {
-        submit: (values: any) => Promise<null>;
+        submit: (values: RegisterMutationVariables) => Promise<null>;
     }) => JSX.Element | null;
 }
-export declare const RegisterController: (props: RegisterControllerProps) => JSX.Element;
+export declare const RegisterController: (props: RegisterControllerProps) => JSX.Element | null;
 export {};

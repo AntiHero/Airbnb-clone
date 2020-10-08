@@ -1,20 +1,30 @@
-import * as React from 'react';
-import { Component } from 'react';
-
+import { gql, useMutation } from '@apollo/client';
+import { RegisterMutation, RegisterMutationVariables } from '../../generated/types';
 interface RegisterControllerProps {
-  children: (data: { submit: (values: any) => Promise<null> }) => JSX.Element | null
+  children: (data: {
+    submit: (values: RegisterMutationVariables) => Promise<null>;
+  }) => JSX.Element | null;
 }
+
+const registerMutation = gql`
+  mutation Register($email: String!, $password: String!) {
+    register(email: $email, password: $password) {
+      message
+    }
+  }
+`;
 
 export const RegisterController = (props: RegisterControllerProps) => {
+  const [register] = useMutation(registerMutation) ;
 
-  const submit = async (values: any) => {
-    console.log(values);
-    return null;
+  const submit = async (values: RegisterMutationVariables) => {
+
+    const { data } = await register({
+      variables: values,
+    });
+
+    return data;
   };
 
-  return (
-    <>
-      {props.children({ submit })}
-    </>
-  );
-}
+  return props.children({ submit });
+};
