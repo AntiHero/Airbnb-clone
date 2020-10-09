@@ -24,6 +24,7 @@ exports.RegisterController = (props) => {
         const { data } = yield register({
             variables: values,
         });
+        console.log(data);
         return data;
     });
     return props.children({ submit });

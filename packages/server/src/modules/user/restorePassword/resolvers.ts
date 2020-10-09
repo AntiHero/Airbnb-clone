@@ -7,7 +7,7 @@ import { createResotrePasswordEmailLink } from "../../../utils/createRestorePass
 import { restorePasswordLockAccount } from "../../../utils/restorePasswordLockAccount";
 import { ResolverMap } from "../../../@types/graphql-utils";
 import * as yup from "yup";
-import * as bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 
 const schema = yup.object().shape({
   email: yup.string().min(3).max(255).email(),

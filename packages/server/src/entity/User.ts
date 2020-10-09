@@ -5,7 +5,7 @@ import {
   PrimaryGeneratedColumn,
   BeforeInsert,
 } from "typeorm";
-import * as bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs";
 // import { v4 as uuidv4 } from "uuid";
 // import { uuid } from 'uuidv4';
 

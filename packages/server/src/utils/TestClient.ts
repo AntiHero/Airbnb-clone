@@ -1,6 +1,6 @@
 import axios from "axios";
 import axiosCookieJarSupport from 'axios-cookiejar-support';
-import * as tough from 'tough-cookie';
+import tough from 'tough-cookie';
 
 axiosCookieJarSupport(axios);
 

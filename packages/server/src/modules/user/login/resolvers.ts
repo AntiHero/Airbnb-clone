@@ -2,7 +2,7 @@ import { userSessionIdPrefix } from './../../../constants';
 import { failedLogin, failedConfirm, accountIsLocked } from "./errorMessages";
 import { User } from "./../../../entity/User";
 import { ResolverMap } from "./../../../@types/graphql-utils";
-import * as bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs";
 
 const errorResponse = (errorMessage: string) => [
   {

@@ -2,7 +2,7 @@ import { createTestConn } from './../../../testUtils/createTestConnection';
 import { restorePasswordLockAccount } from '../../../utils/restorePasswordLockAccount';
 import { passwordTooShortError, expiredKeyError } from "./errorMessages";
 import { accountIsLocked } from "./../login/errorMessages";
-import * as Redis from "ioredis";
+import Redis from "ioredis";
 import { createResotrePasswordEmailLink } from "../../../utils/createRestorePasswordEmailLink";
 import { TestClient } from "../../../utils/TestClient";
 import { User } from "../../../entity/User";

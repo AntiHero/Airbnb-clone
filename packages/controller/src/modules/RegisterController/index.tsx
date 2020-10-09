@@ -22,7 +22,7 @@ export const RegisterController = (props: RegisterControllerProps) => {
     const { data } = await register({
       variables: values,
     });
-
+    console.log(data);
     return data;
   };
 

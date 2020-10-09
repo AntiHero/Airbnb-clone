@@ -1,5 +1,5 @@
 import { createTestConn } from './../testUtils/createTestConnection';
-import * as Redis from "ioredis";
+import Redis from "ioredis";
 import fetch from "node-fetch";
 import { User } from "./../entity/User";
 import { createConfirmEmailLink } from "./createConfirmEmailLink";

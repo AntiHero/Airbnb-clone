@@ -1,7 +1,7 @@
-import * as fs from "fs";
+import fs from "fs";
 import { join } from "path";
 import { makeExecutableSchema, mergeTypeDefs, mergeResolvers } from "graphql-tools";
-import * as glob from "glob";
+import glob from "glob";
 // import { importSchema } from "graphql-import";
 // import { GraphQLSchema } from "graphql";
 
