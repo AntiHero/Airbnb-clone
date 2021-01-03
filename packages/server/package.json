@@ -1,6 +1,7 @@
 {
   "name": "@abb/server",
   "version": "0.0.1",
+  "main": "dist/index.js",
   "description": "airbnb clone server",
   "devDependencies": {
     "@gql2ts/types": "^1.9.0",
@@ -53,7 +54,6 @@
     "express-session": "^1.17.1",
     "glob": "^7.1.6",
     "graphql": "^15.3.0",
-    "graphql-import": "^1.0.2",
     "graphql-import-node": "^0.0.4",
     "graphql-middleware": "^4.0.2",
     "graphql-request": "^2.0.0",
@@ -78,7 +78,7 @@
     "gen-schema-types": "tsnd src/scripts/createTypes.ts",
     "test": "cross-env NODE_ENV=test yarn jest --detectOpenHandles",
     "ci": "start-server-and-test start:test http://localhost:4000 test",
-    "build": "rm -rf ./dist && tsc && copyfiles -u 1 src/**/*.graphql ./dist"
+    "build": "rm -rf ./dist && tsc && copyfiles -u 1 src/**/*.graphql dist"
   },
   "license": "MIT"
 }

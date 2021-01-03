@@ -41,12 +41,6 @@
   {
     "name": "production",
     "type": "postgres",
-    "host": "localhost",
-    "port": 5432,
-    "username": "nightcrawler",
-    "password": "root",
-    "database": "graphql-server-boilerplate",
-    "dropSchema": true,
     "synchronize": true,
     "logging": true,
     "entities": ["src/entity/**/*.js"],

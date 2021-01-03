@@ -33,6 +33,8 @@ export const startServer = async () => {
       session: req.session,
       req,
     }),
+    playground: true,
+    introspection: true,
   });
 
   const cors = {
