@@ -1,10 +1,17 @@
 {
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "server": "yarn workspace @abb/server",
     "website": "yarn workspace @abb/website",
     "common": "yarn workspace @abb/common",
-    "controller": "yarn workspace @abb/controller"
+    "controller": "yarn workspace @abb/controller",
+    "build:server": "lerna run build --scope={@abb/common,@abb/server}"
+  },
+  "name": "airbnb-clone",
+  "devDependencies": {
+    "lerna": "^3.22.1"
   }
 }
