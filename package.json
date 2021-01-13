@@ -9,7 +9,7 @@
     "common": "yarn workspace @abb/common",
     "controller": "yarn workspace @abb/controller",
     "build:server": "lerna run build --scope={@abb/common,@abb/server}",
-    "build:web": "lerna run build --scope={@abb/common,@abb/website}" 
+    "build:web": "lerna run build --scope={@abb/common,@abb/website,@abb/controller}" 
   },
   "name": "airbnb-clone",
   "devDependencies": {
