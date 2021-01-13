@@ -21,7 +21,7 @@ import { Strategy } from "passport-google-oauth20";
 dotenv.config();
 
 export const startServer = async () => {
-  const port = process.env.NODE_ENV === "test" ? 3000 : 4000;
+  const port = process.env.NODE_ENV === "test" ? 3000 : process.env.PORT || 4000;
 
   const RedisStore = connectRedis(session);
 
