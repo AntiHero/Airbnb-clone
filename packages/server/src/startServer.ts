@@ -1,27 +1,28 @@
 import { Connection } from 'typeorm';
 import { createTestConn } from './testUtils/createTestConnection';
-import { User } from "./entity/User";
-import "reflect-metadata";
-import "graphql-import-node";
-import { redisSessionPrefix } from "./constants";
-import express from "express";
-import { createSchema } from "./utils/createSchema";
-import { confirmEmail } from "./routes/Email";
-import { createTypeORMConnection } from "./utils/createTypeORMConnection";
-import { ApolloServer } from "apollo-server-express";
-import session from "express-session";
-import redis from "./redis";
-import dotenv from "dotenv";
-import connectRedis from "connect-redis";
-import rateLimit from "express-rate-limit";
-import RateLimitRedisStore from "rate-limit-redis";
-import passport from "passport";
-import { Strategy } from "passport-google-oauth20";
+import { User } from './entity/User';
+import 'reflect-metadata';
+import 'graphql-import-node';
+import { redisSessionPrefix } from './constants';
+import express from 'express';
+import { createSchema } from './utils/createSchema';
+import { confirmEmail } from './routes/Email';
+import { createTypeORMConnection } from './utils/createTypeORMConnection';
+import { ApolloServer } from 'apollo-server-express';
+import session from 'express-session';
+import redis from './redis';
+import dotenv from 'dotenv';
+import connectRedis from 'connect-redis';
+import rateLimit from 'express-rate-limit';
+import RateLimitRedisStore from 'rate-limit-redis';
+import passport from 'passport';
+import { Strategy } from 'passport-google-oauth20';
 
 dotenv.config();
 
 export const startServer = async () => {
-  const port = process.env.NODE_ENV === "test" ? 3000 : process.env.PORT || 4000;
+  const port =
+    process.env.NODE_ENV === 'test' ? 3000 : process.env.PORT || 4000;
 
   const RedisStore = connectRedis(session);
 
@@ -29,7 +30,7 @@ export const startServer = async () => {
     schema: createSchema(),
     context: ({ req }) => ({
       redis,
-      url: req.protocol + "://" + req.get("host"),
+      url: req.protocol + '://' + req.get('host'),
       session: req.session,
       req,
     }),
@@ -44,7 +45,7 @@ export const startServer = async () => {
 
   let connection: Connection;
 
-  if (process.env.NODE_ENV === "test") {
+  if (process.env.NODE_ENV === 'test') {
     connection = await createTestConn(true);
   } else {
     connection = await createTypeORMConnection();
@@ -55,21 +56,25 @@ export const startServer = async () => {
       {
         clientID: process.env.GOOGLE_CONSUMER_KEY as string,
         clientSecret: process.env.GOOGLE_CONSUMER_SECRET as string,
-        callbackURL: `http://localhost:${port}/auth/google/callback`,
+        callbackURL:
+          process.env.NODE_ENV === 'test' ||
+          process.env.NODE_ENV === 'development'
+            ? `http://localhost:${port}/auth/google/callback`
+            : 'https://airbnb-clone-art.netlify.app/auth/google/callback',
       },
       async (_, __, profile, done) => {
         const { id, emails } = profile;
 
         const query = await connection
           .getRepository(User)
-          .createQueryBuilder("user")
+          .createQueryBuilder('user')
           .where('user.googleId = :id', { id });
 
         let email: string | null = null;
 
         if (emails) {
           email = emails[0].value;
-          await query.orWhere("user.email = :email", { email }).getOne();
+          await query.orWhere('user.email = :email', { email }).getOne();
         }
 
         let user = await query.getOne();
@@ -78,13 +83,13 @@ export const startServer = async () => {
         if (!user) {
           user = await User.create({
             googleId: id,
-            email
+            email,
           }).save();
-        } else if(!user.googleId) {
+        } else if (!user.googleId) {
           // found user by email
           user.googleId = id;
           await user.save();
-        } 
+        }
 
         return done(undefined, { id: user.id });
 
@@ -115,27 +120,30 @@ export const startServer = async () => {
         client: redis as any,
         prefix: redisSessionPrefix,
       }),
-      name: "qid",
+      name: 'qid',
       secret: process.env.SESSION_SECRET as string,
       resave: false,
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: process.env.NODE_ENV === 'production',
         maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
       },
     })
   );
 
-  app.use("/confirm/:id", confirmEmail);
+  app.use('/confirm/:id', confirmEmail);
 
   // We are using sessions ourselves
   // app.use(passport.session());
 
   app.get(
-    "/auth/google",
-    passport.authenticate("google", {
-      scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
+    '/auth/google',
+    passport.authenticate('google', {
+      scope: [
+        'https://www.googleapis.com/auth/userinfo.email',
+        'https://www.googleapis.com/auth/userinfo.profile',
+      ],
     })
   );
 
@@ -145,17 +153,17 @@ export const startServer = async () => {
   //   login page.  Otherwise, the primary route function function will be called,
   //   which, in this example, will redirect the user to the home page.
   app.get(
-    "/auth/google/callback",
-    passport.authenticate("google", { session: false }),
+    '/auth/google/callback',
+    passport.authenticate('google', { session: false }),
     (req, res) => {
-      (req.session as any).userId = (req.user as User).id
+      (req.session as any).userId = (req.user as User).id;
 
       // @todo redirect to frontend
-      res.redirect("/");
+      res.redirect('/');
     }
   );
 
-  server.applyMiddleware({ app, path: "/", cors });
+  server.applyMiddleware({ app, path: '/', cors });
 
   const expressApp = await app.listen({ port });
 
