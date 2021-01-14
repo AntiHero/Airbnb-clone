@@ -1,13 +1,13 @@
 import SparkPost from "sparkpost";
 
 const client = new SparkPost(process.env.SPARKPOST_API_KEY, {
-  origin: "https://api.eu.sparkpost.com/api/v1"
+  endpoint: "https://api.eu.sparkpost.com:443"
 });
 
 export const sendEmail = async (recipient: string, url: string) => {
   const response = await client.transmissions.send({
     options: {
-      sandbox: true,
+      sandbox: process.env.NODE_ENV === 'test' ? true : false,
     },
     content: {
       from: "testing@sparkpostbox.com",

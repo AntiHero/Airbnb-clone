@@ -1,5 +1,5 @@
 import { Redis } from "ioredis";
-import { uuid } from "uuidv4";
+import { v4 } from 'uuid';
 // http://localhost:4000
 // https://my-site.com => https://my-site.com/confirm<id>
 export const createConfirmEmailLink = async (
@@ -7,7 +7,7 @@ export const createConfirmEmailLink = async (
   userId: string,
   redis: Redis
 ) => {
-  const id = uuid();
+  const id = v4();
   await redis.set(id, userId, "ex", 60 * 60 * 24);
 
   return `${url}/confirm/${id}`;

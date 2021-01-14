@@ -7,4 +7,5 @@ module.exports = {
     "^.+\\tsx?$": "ts-jest"
   },
   globalSetup: './src/setupTest/setupHelper',
+  modulePathIgnorePatterns: ["<rootDir>/dist/"]
 };
