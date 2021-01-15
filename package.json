@@ -1,15 +1,27 @@
 {
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/react-native",
+      "**/react-native/**",
+      "**/expo",
+      "**/expo/**",
+      "**/react-native-typescript-transformer",
+      "**/react-native-typescript-transformer/**",
+      "**/metro-bundler-config-yarn-workspaces",
+      "**/metro-bundler-config-yarn-workspaces/**"
+    ]
+  },
   "scripts": {
     "server": "yarn workspace @abb/server",
     "website": "yarn workspace @abb/website",
     "common": "yarn workspace @abb/common",
     "controller": "yarn workspace @abb/controller",
     "build:server": "lerna run build --scope={@abb/common,@abb/server}",
-    "build:web": "lerna run build --scope={@abb/common,@abb/controller,@abb/website}" 
+    "build:web": "lerna run build --scope={@abb/common,@abb/controller,@abb/website}"
   },
   "name": "airbnb-clone",
   "devDependencies": {
