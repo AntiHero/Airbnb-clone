@@ -10,7 +10,7 @@ export const sendEmail = async (recipient: string, url: string) => {
       sandbox: false,
     },
     content: {
-      from: " bounces@zero-studio.art",
+      from: "bounces@bounces.zero-studio.art",
       subject: "Confirm Email!",
       html: `<html><body><a href="${url}" target="_blank">Confirm your email</a></body></html>`,
     },
