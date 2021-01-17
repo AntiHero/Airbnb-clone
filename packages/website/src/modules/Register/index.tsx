@@ -8,7 +8,7 @@ const RegisterConnector = () => {
     <div className="RegisterConnector">
       <RegisterController>
         {
-          ({ submit }) => <EnhancedRegisterView submit={submit} />
+          ({ submit }: { submit: any }) => <EnhancedRegisterView submit={submit} />
         }
       </RegisterController>
     </div>

@@ -14,7 +14,8 @@
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "introspection": "graphql-codegen --config introspection.yml",
-    "generate": "yarn introspection && graphql-codegen --config codegen.yml"
+    "generate": "yarn introspection && graphql-codegen --config codegen.yml",
+    "refresh": "yarn generate && yarn build"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "1.20.0",

@@ -6,6 +6,6 @@ module.exports = {
   transform: {
     "^.+\\tsx?$": "ts-jest"
   },
-  globalSetup: './src/setupTest/setupHelper',
+  globalSetup: './src/setupTest/setupHelper.js',
   modulePathIgnorePatterns: ["<rootDir>/dist/"]
 };

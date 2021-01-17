@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client';
-import { RegisterMutation, RegisterMutationVariables } from '../../generated/types';
+import { RegisterMutationVariables } from '../../generated/types';
 interface RegisterControllerProps {
   children: (data: {
     submit: (values: RegisterMutationVariables) => Promise<null>;
